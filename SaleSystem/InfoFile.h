@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-
+//gitTest
 #define _F_LOGIN "./login.ini"
 #define _F_STOCK "./stock.txt"
 
