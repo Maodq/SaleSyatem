@@ -7,7 +7,8 @@
 #include "SaleSystem.h"
 
 #include "MainFrm.h"
-
+#include "CSelectView1.h"
+#include "CDispalyView.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -52,6 +53,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 
 	//设置图标，IDI_ICON_WIN为图标资源ID，此为WINAPI函数
+	//当此处的GCL_HICON未定义的时候可以修改一下X64变为X86
 	SetClassLong(m_hWnd, GCL_HICON, (LONG)AfxGetApp()->LoadIconW(IDI_ICON_WIN));
 	//设置窗口的位置和大小：CWnd::MoveWindow
 	//0, 0, 起点坐标x和y
@@ -91,3 +93,26 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 // CMainFrame 消息处理程序
 
+
+
+BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+
+	//return CFrameWnd::OnCreateClient(lpcs, pContext);
+	
+	// 静态拆分窗口，1行2列，CSplitterWnd::CreateStatic
+	m_spliter.CreateStatic(this, 1, 2);
+
+	// 创建视图：CSplitterWnd::CreateView
+	//0, 0 ： 放在第0行第0列的位置
+	//RUNTIME_CLASS(CSelectView) ：需要头文件#include "SelectView.h"， CSelectView在SelectView.h中声明
+	// CSize(250, 500)：指定视图宽度和高度
+	//pContext ： 为OnCreateClient()最后一个形参
+	m_spliter.CreateView(0, 0, RUNTIME_CLASS(CSelectView1), CSize(200, 500), pContext);
+
+	//0, 1： 放在第0行第1列的位置
+	//CDispalyView，需要头文件#include "DispalyView.h"
+	m_spliter.CreateView(0, 1, RUNTIME_CLASS(CDispalyView), CSize(600, 500), pContext);
+	return TRUE;
+}

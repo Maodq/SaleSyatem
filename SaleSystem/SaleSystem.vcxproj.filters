@@ -45,6 +45,12 @@
     <ClInclude Include="CLoginDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CDispalyView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CSelectView1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SaleSystem.cpp">
@@ -66,6 +72,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CLoginDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CDispalyView.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CSelectView1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

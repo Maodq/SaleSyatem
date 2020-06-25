@@ -113,7 +113,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -183,7 +183,9 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CDispalyView.h" />
     <ClInclude Include="CLoginDlg.h" />
+    <ClInclude Include="CSelectView1.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="InfoFile.h" />
     <ClInclude Include="MainFrm.h" />
@@ -195,7 +197,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CDispalyView.cpp" />
     <ClCompile Include="CLoginDlg.cpp" />
+    <ClCompile Include="CSelectView1.cpp" />
     <ClCompile Include="InfoFile.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">

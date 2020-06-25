@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-//gitTest
+//gitTest  _CRT_SECURE_NO_WARNINGS
 #define _F_LOGIN "./login.ini"
 #define _F_STOCK "./stock.txt"
 
