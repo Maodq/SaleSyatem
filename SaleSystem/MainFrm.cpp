@@ -13,6 +13,7 @@
 #define new DEBUG_NEW
 #endif
 #include "CUserDlg.h"
+#include "CSellDlg.h"
 
 // CMainFrame
 
@@ -149,6 +150,16 @@ LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
 	case NM_B:
 	{
 	//MessageBox(_T("NM_B"));
+		//CSellDlg类需要包含头文件#include "SellDlg.h"
+		Context.m_pNewViewClass = RUNTIME_CLASS(CSellDlg);
+		Context.m_pCurrentFrame = this;
+		Context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+		m_spliter.DeleteView(0, 1);
+		m_spliter.CreateView(0, 1, RUNTIME_CLASS(CSellDlg), CSize(600, 0), &Context);
+		CSellDlg* pNewView = (CSellDlg*)m_spliter.GetPane(0, 1);
+		m_spliter.RecalcLayout();
+		pNewView->OnInitialUpdate();
+		m_spliter.SetActivePane(0, 1);
 
 	}
 		break;

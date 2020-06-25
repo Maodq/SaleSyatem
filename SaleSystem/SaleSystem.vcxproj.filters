@@ -54,6 +54,9 @@
     <ClInclude Include="CUserDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CSellDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SaleSystem.cpp">
@@ -84,6 +87,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CUserDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CSellDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
