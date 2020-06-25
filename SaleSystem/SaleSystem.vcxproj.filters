@@ -51,6 +51,9 @@
     <ClInclude Include="CSelectView1.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CUserDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SaleSystem.cpp">
@@ -78,6 +81,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CSelectView1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CUserDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

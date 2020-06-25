@@ -12,6 +12,7 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+#include "CUserDlg.h"
 
 // CMainFrame
 
@@ -19,6 +20,14 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
+	//ON_MESSAGE响应的是自定义消息
+	//产生NM_X消息，自动调用OnMyChange函数
+	ON_MESSAGE(NM_A, OnMyChange)
+	ON_MESSAGE(NM_B, OnMyChange)
+	ON_MESSAGE(NM_C, OnMyChange)
+	ON_MESSAGE(NM_D, OnMyChange)
+	ON_MESSAGE(NM_E, OnMyChange)
+
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -107,7 +116,7 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 	// 创建视图：CSplitterWnd::CreateView
 	//0, 0 ： 放在第0行第0列的位置
 	//RUNTIME_CLASS(CSelectView) ：需要头文件#include "SelectView.h"， CSelectView在SelectView.h中声明
-	// CSize(250, 500)：指定视图宽度和高度
+	// CSize(250, 500)：指定视图宽度和高度 
 	//pContext ： 为OnCreateClient()最后一个形参
 	m_spliter.CreateView(0, 0, RUNTIME_CLASS(CSelectView1), CSize(200, 500), pContext);
 
@@ -115,4 +124,45 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 	//CDispalyView，需要头文件#include "DispalyView.h"
 	m_spliter.CreateView(0, 1, RUNTIME_CLASS(CDispalyView), CSize(600, 500), pContext);
 	return TRUE;
+}
+
+LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
+{
+	CCreateContext   Context;
+	switch (wParam)
+	{
+	case NM_A:
+	{
+	//MessageBox(_T("NM_A"));
+	// CUserDlg类需要包含头文件#include "UserDlg.h"
+		Context.m_pNewViewClass = RUNTIME_CLASS(CUserDlg);
+	Context.m_pCurrentFrame = this;
+	Context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+	m_spliter.DeleteView(0, 1);
+	m_spliter.CreateView(0, 1, RUNTIME_CLASS(CUserDlg), CSize(600, 500), &Context);
+	CUserDlg* pNewView = (CUserDlg*)m_spliter.GetPane(0, 1);
+	m_spliter.RecalcLayout();
+	pNewView->OnInitialUpdate();
+	m_spliter.SetActivePane(0, 1);
+	}
+	break;
+	case NM_B:
+	{
+	//MessageBox(_T("NM_B"));
+
+	}
+		break;
+	case NM_C:
+		MessageBox(_T("NM_C"));
+		break;
+	case NM_D:
+		MessageBox(_T("NM_D"));
+		break;
+	case NM_E:
+		MessageBox(_T("NM_E"));
+		break;
+	default:
+		MessageBox(_T("error"));
+	}
+	return 0;
 }

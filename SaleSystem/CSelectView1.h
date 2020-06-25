@@ -22,8 +22,14 @@ public:
 #endif
 #endif
 
+private:
+	CTreeCtrl *m_treeCtrl; //树控件
+	CImageList m_imageList; //图标列表
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	virtual void OnInitialUpdate();
+	afx_msg void OnTvnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
 };
 
 
