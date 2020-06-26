@@ -110,7 +110,7 @@ void CSelectView1::OnTvnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 	{
 		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_C, (WPARAM)NM_C, (LPARAM)0);
 	}
-	else if (str == TEXT("库存增加"))
+	else if (str == TEXT("库存添加"))
 	{
 		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_D, (WPARAM)NM_D, (LPARAM)0);
 	}

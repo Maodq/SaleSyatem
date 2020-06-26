@@ -50,6 +50,8 @@ private:
 	
 	//自定义消息处理函数
 	afx_msg LRESULT OnMyChange(WPARAM wParam, LPARAM lParam);
+public:
+	afx_msg void On32772();
 };
 
 

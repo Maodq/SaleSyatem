@@ -14,6 +14,9 @@
 #endif
 #include "CUserDlg.h"
 #include "CSellDlg.h"
+#include "CInfoDlg.h"
+#include "CAddDlg.h"
+#include "CDelDlg.h"
 
 // CMainFrame
 
@@ -29,6 +32,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_MESSAGE(NM_D, OnMyChange)
 	ON_MESSAGE(NM_E, OnMyChange)
 
+	ON_COMMAND(ID_32772, &CMainFrame::On32772)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -136,7 +140,7 @@ LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
 	{
 	//MessageBox(_T("NM_A"));
 	// CUserDlg类需要包含头文件#include "UserDlg.h"
-		Context.m_pNewViewClass = RUNTIME_CLASS(CUserDlg);
+	Context.m_pNewViewClass = RUNTIME_CLASS(CUserDlg);
 	Context.m_pCurrentFrame = this;
 	Context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
 	m_spliter.DeleteView(0, 1);
@@ -160,20 +164,65 @@ LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
 		m_spliter.RecalcLayout();
 		pNewView->OnInitialUpdate();
 		m_spliter.SetActivePane(0, 1);
-
 	}
 		break;
-	case NM_C:
-		MessageBox(_T("NM_C"));
+	case NM_C:	
+	{    
+		//MessageBox(_T("NM_C"));
+		//CInfoDlg类需要包含头文件#include "InfoDlg.h"
+		Context.m_pNewViewClass = RUNTIME_CLASS(CInfoDlg);
+		Context.m_pCurrentFrame = this;
+		Context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+		m_spliter.DeleteView(0, 1);
+		m_spliter.CreateView(0, 1, RUNTIME_CLASS(CInfoDlg), CSize(600, 0), &Context);
+		CInfoDlg* pNewView = (CInfoDlg*)m_spliter.GetPane(0, 1);
+		m_spliter.RecalcLayout();
+		pNewView->OnInitialUpdate();
+		m_spliter.SetActivePane(0, 1);
+		
+	}
 		break;
 	case NM_D:
-		MessageBox(_T("NM_D"));
+	{
+		//MessageBox(_T("NM_D"));
+		//CAddDlg类需要包含头文件#include "CAddDlg.h"
+		Context.m_pNewViewClass = RUNTIME_CLASS(CAddDlg);
+		Context.m_pCurrentFrame = this;
+		Context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+		m_spliter.DeleteView(0, 1);
+		m_spliter.CreateView(0, 1, RUNTIME_CLASS(CAddDlg), CSize(600, 0), &Context);
+		CAddDlg* pNewView = (CAddDlg*)m_spliter.GetPane(0, 1);
+		m_spliter.RecalcLayout();
+		pNewView->OnInitialUpdate();
+		m_spliter.SetActivePane(0, 1);
+	}
+		
 		break;
-	case NM_E:
-		MessageBox(_T("NM_E"));
+	case NM_E:	
+	{
+		//MessageBox(_T("NM_E"));
+		//CDelDlg类需要包含头文件#include "DelDlg.h"
+		Context.m_pNewViewClass = RUNTIME_CLASS(CDelDlg);
+		Context.m_pCurrentFrame = this;
+		Context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+		m_spliter.DeleteView(0, 1);
+		m_spliter.CreateView(0, 1, RUNTIME_CLASS(CDelDlg), CSize(600, 0), &Context);
+		CDelDlg* pNewView = (CDelDlg*)m_spliter.GetPane(0, 1);
+		m_spliter.RecalcLayout();
+		pNewView->OnInitialUpdate();
+		m_spliter.SetActivePane(0, 1);
+	}
 		break;
 	default:
 		MessageBox(_T("error"));
 	}
 	return 0;
 }
+
+
+void CMainFrame::On32772()
+{
+	// TODO: 在此添加命令处理程序代码
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_A, (WPARAM)NM_A, (LPARAM)0);
+}
+
